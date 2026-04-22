@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import time
 
@@ -106,11 +106,13 @@ def draw_hud(frame, engine: WorkoutEngine, result, saved_message: str = "") -> N
         f"Exercise: {_exercise_label(engine.selected_exercise)}",
         f"Session: {'Running' if state.is_running else 'Idle'}",
         f"Phase: {state.phase}",
-        f"Correct reps: {state.correct_reps}",
-        f"Attempted reps: {state.attempted_reps}",
-        f"Valid plank time: {format_duration(state.valid_hold_seconds)}",
-        f"Elapsed: {format_duration(state.elapsed_seconds)}",
     ]
+    if engine.selected_exercise == "plank":
+        header_lines.append(f"Valid plank time: {format_duration(state.valid_hold_seconds)}")
+    else:
+        header_lines.append(f"Correct reps: {state.correct_reps}")
+        header_lines.append(f"Attempted reps: {state.attempted_reps}")
+    header_lines.append(f"Elapsed: {format_duration(state.elapsed_seconds)}")
     guidance_lines = [
         "Controls:",
         "1 Squat  2 Push-up  3 Plank",

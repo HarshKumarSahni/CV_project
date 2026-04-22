@@ -4,3 +4,6 @@ __pycache__/
 reports/
 .venv/
 *.egg-info/
+
+venv/
+venv_win/
